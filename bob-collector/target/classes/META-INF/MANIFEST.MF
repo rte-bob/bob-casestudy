@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: bob-collector
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Consultant
+Implementation-Vendor-Id: com.rte.bob
+Build-Jdk: 1.8.0_162
+Implementation-URL: http://projects.spring.io/spring-boot/bob-parent/b
+ ob-collector/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: RTE-FRANCE
+

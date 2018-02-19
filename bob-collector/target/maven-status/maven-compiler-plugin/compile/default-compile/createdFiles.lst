@@ -1,0 +1,12 @@
+com\rte\bob\collecting\configuration\JobConfiguration.class
+com\rte\bob\collecting\BobCollectingRteApplication.class
+com\rte\bob\collecting\model\Offre.class
+com\rte\bob\collecting\service\processor\OffreItemProcessor.class
+com\rte\bob\collecting\DataImportApplication.class
+com\rte\bob\collecting\service\processor\validator\OffreValidator.class
+com\rte\bob\collecting\service\reader\CsvReader.class
+com\rte\bob\collecting\model\mapper\OffreFieldSetMapper.class
+com\rte\bob\collecting\domain\OffreSpeciale.class
+com\rte\bob\collecting\domain\OffreSpecialRepository.class
+com\rte\bob\collecting\service\reader\XmlReader.class
+com\rte\bob\collecting\configuration\Job2Configuration.class

@@ -1,0 +1,3506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+-
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.rte.bob</groupId>
+
+	<artifactId>bob-parent</artifactId>
+
+	<version>0.0.1-RELEASE</version>
+
+	<packaging>pom</packaging>
+
+	<name>bob-parent</name>
+
+	<description>POM parent des projets Java BOB FWK</description>
+
+
+	-
+	<modules>
+
+		<module>bob-collector</module>
+
+		<module>bob-processor</module>
+
+		<module>bob-publisher</module>
+
+		
+
+	</modules>
+
+
+	-
+	<properties>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<spring.version>3.2.12.RELEASE</spring.version>
+
+		<slf4j.version>1.6.1</slf4j.version>
+
+		<syslog4j.version>0.9.30</syslog4j.version>
+
+		<guava.version>17.0</guava.version>
+
+		<sesame.version>2.7.7</sesame.version>
+
+		<camel.version>2.10.6</camel.version>
+
+		<camel.mina.version>2.10.7</camel.mina.version>
+
+		<camel.mina.core.version>2.0.7</camel.mina.core.version>
+
+		<curator.version>2.4.1</curator.version>
+
+		<inject.version>1</inject.version>
+
+		<httpclient.version>4.3.2</httpclient.version>
+
+		<cxf.version>2.6.6</cxf.version>
+
+		<cxf.codegen.plugin.version>2.7.3</cxf.codegen.plugin.version>
+
+		<jaxb2.version>2.2</jaxb2.version>
+
+		<resteasy.version>3.0.8.Final</resteasy.version>
+
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+
+		<jacoco.version>0.7.1.201405082137</jacoco.version>
+
+		<sonar-jacoco-listeners.version>2.2.1</sonar-jacoco-listeners.version>
+
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+
+		<jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
+
+		<jacoco.out.ut.file>jacoco-ut.exec</jacoco.out.ut.file>
+
+		<sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.ut.file}</sonar.jacoco.reportPath>
+
+		<jacoco.out.it.file>jacoco-it.exec</jacoco.out.it.file>
+
+		<sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
+
+		<sonar.jacoco.reportMissing.force.zero>true</sonar.jacoco.reportMissing.force.zero>
+
+		<felix.framework.version>3.2.2</felix.framework.version>
+
+		<felix.configadmin.version>1.2.8</felix.configadmin.version>
+
+		<poi.version>3.12</poi.version>
+
+		<worldwind.version>1.5</worldwind.version>
+
+		<jackson.version>1.9.11</jackson.version>
+
+		<dbunit.version>2.2.2</dbunit.version>
+
+		<wsdl4j.version>1.6.2</wsdl4j.version>
+
+		<jersey.version>1.17</jersey.version>
+
+	</properties>
+
+
+	-
+	<dependencyManagement>
+
+
+		-
+		<dependencies>
+
+			<!-- Gestion des préférences -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-gestion-preferences-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-gestion-preferences</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-gestion-preferences-client</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Gestion des paramétrages -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-gestion-parametrages-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-gestion-parametrages</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-gestion-parametrages-client</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Commons -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-traces-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-commons</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-test-commons</artifactId>
+
+				<version>${project.version}</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-supervision-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-commons-sesame</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-authentification-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-mig-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-onm-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-transverse-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Tests -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-mock-bus</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-tests-utilisateur</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Annuaire -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-registry-service-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-service-provider-resolver-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-zookeeper-registry-services</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-zookeeper-provider-resolver</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-annuaire-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Catalogue de filtres -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-cataloguefiltres-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-cataloguefiltres</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-cataloguefiltres-client</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Annotations -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-annotations</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-calculs-geographiques</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Ozone -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-ozone-authentification</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Filtres -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-filtres-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-filtres</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Notifications -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-notifications-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Gestion des droits -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-droits-profilsroles-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-droits-profilsroles-client</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-droits-annuaire-client</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Multilingues et multi-dialectes -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-agregation</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-conversion</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-traduction-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-traduction-rest-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- aide en ligne -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-aideenligne-api</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.rte.bob</groupId>
+
+				<artifactId>bob-aideenligne-framework</artifactId>
+
+				<version>${project.version}</version>
+
+			</dependency>
+
+			<!-- Initialisation de l'annuaire via le fichier Excel -->
+
+
+
+		
+
+			<!-- Servlets -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>javax.servlet</groupId>
+
+				<artifactId>servlet-api</artifactId>
+
+				<version>2.5</version>
+
+				<scope>provided</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>javax.servlet.jsp</groupId>
+
+				<artifactId>jsp-api</artifactId>
+
+				<version>2.2</version>
+
+				<scope>provided</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>jstl</groupId>
+
+				<artifactId>jstl</artifactId>
+
+				<version>1.2</version>
+
+			</dependency>
+
+			<!-- Commons -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.commons</groupId>
+
+				<artifactId>commons-lang3</artifactId>
+
+				<version>3.1</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>commons-lang</groupId>
+
+				<artifactId>commons-lang</artifactId>
+
+				<version>2.4</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>commons-dbcp</groupId>
+
+				<artifactId>commons-dbcp</artifactId>
+
+				<version>1.4</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>commons-io</groupId>
+
+				<artifactId>commons-io</artifactId>
+
+				<version>2.4</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>commons-collections</groupId>
+
+				<artifactId>commons-collections</artifactId>
+
+				<version>3.2.1</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>joda-time</groupId>
+
+				<artifactId>joda-time</artifactId>
+
+				<version>2.3</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.google.guava</groupId>
+
+				<artifactId>guava</artifactId>
+
+				<version>${guava.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.google.code.gson</groupId>
+
+				<artifactId>gson</artifactId>
+
+				<version>2.2.2</version>
+
+			</dependency>
+
+			<!-- ZooKeeper et Curator -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.curator</groupId>
+
+				<artifactId>curator-framework</artifactId>
+
+				<version>${curator.version}</version>
+
+
+				-
+				<exclusions>
+
+
+					-
+					<exclusion>
+
+						<groupId>log4j</groupId>
+
+						<artifactId>log4j</artifactId>
+
+					</exclusion>
+
+
+					-
+					<exclusion>
+
+						<groupId>org.slf4j</groupId>
+
+						<artifactId>slf4j-log4j12</artifactId>
+
+					</exclusion>
+
+
+					-
+					<exclusion>
+
+						<artifactId>netty</artifactId>
+
+						<groupId>org.jboss.netty</groupId>
+
+					</exclusion>
+
+
+					-
+					<exclusion>
+
+						<groupId>com.google.guava</groupId>
+
+						<artifactId>guava</artifactId>
+
+					</exclusion>
+
+				</exclusions>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.curator</groupId>
+
+				<artifactId>curator-x-discovery</artifactId>
+
+				<version>${curator.version}</version>
+
+
+				-
+				<exclusions>
+
+
+					-
+					<exclusion>
+
+						<groupId>com.google.guava</groupId>
+
+						<artifactId>guava</artifactId>
+
+					</exclusion>
+
+				</exclusions>
+
+			</dependency>
+
+			<!-- CLI -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.beust</groupId>
+
+				<artifactId>jcommander</artifactId>
+
+				<version>1.27</version>
+
+			</dependency>
+
+			<!-- Spring -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+
+				<artifactId>spring-framework-bom</artifactId>
+
+				<version>${spring.version}</version>
+
+				<type>pom</type>
+
+				<scope>import</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+
+				<artifactId>spring-core</artifactId>
+
+				<version>${spring.version}</version>
+
+
+				-
+				<exclusions>
+
+
+					-
+					<exclusion>
+
+						<artifactId>commons-logging</artifactId>
+
+						<groupId>commons-logging</groupId>
+
+					</exclusion>
+
+				</exclusions>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+
+				<artifactId>spring-jms</artifactId>
+
+				<version>${spring.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+
+				<artifactId>spring-test</artifactId>
+
+				<version>${spring.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+
+				<artifactId>spring-beans</artifactId>
+
+				<version>${spring.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+
+				<artifactId>spring-aop</artifactId>
+
+				<version>${spring.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+
+				<artifactId>spring-jdbc</artifactId>
+
+				<version>${spring.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+
+				<artifactId>spring-context-support</artifactId>
+
+				<version>${spring.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+
+				<artifactId>spring-context</artifactId>
+
+				<version>${spring.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+
+				<artifactId>spring-tx</artifactId>
+
+				<version>${spring.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+
+				<artifactId>spring-web</artifactId>
+
+				<version>${spring.version}</version>
+
+			</dependency>
+
+			<!-- AspectJ -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.aspectj</groupId>
+
+				<artifactId>aspectjrt</artifactId>
+
+				<version>1.6.8</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.aspectj</groupId>
+
+				<artifactId>aspectjweaver</artifactId>
+
+				<version>1.6.8</version>
+
+			</dependency>
+
+			<!-- @Inject -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>javax.inject</groupId>
+
+				<artifactId>javax.inject</artifactId>
+
+				<version>${inject.version}</version>
+
+			</dependency>
+
+			<!-- MyBatis + JDBC drivers -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.mybatis</groupId>
+
+				<artifactId>mybatis</artifactId>
+
+				<version>3.2.2</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.mybatis</groupId>
+
+				<artifactId>mybatis-spring</artifactId>
+
+				<version>1.2.0</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>postgresql</groupId>
+
+				<artifactId>postgresql</artifactId>
+
+				<version>9.1-901.jdbc4</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.microsoft.sqlserver</groupId>
+
+				<artifactId>sqljdbc4</artifactId>
+
+				<version>4.0</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.h2database</groupId>
+
+				<artifactId>h2</artifactId>
+
+				<version>1.3.167</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+			<!-- Camel -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.camel</groupId>
+
+				<artifactId>camel-core</artifactId>
+
+				<version>${camel.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.camel</groupId>
+
+				<artifactId>camel-spring</artifactId>
+
+				<version>${camel.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.camel</groupId>
+
+				<artifactId>camel-http</artifactId>
+
+				<version>${camel.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.camel</groupId>
+
+				<artifactId>camel-cxf</artifactId>
+
+				<version>${camel.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.camel</groupId>
+
+				<artifactId>camel-jetty</artifactId>
+
+				<version>${camel.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.camel</groupId>
+
+				<artifactId>camel-jms</artifactId>
+
+				<version>${camel.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.camel</groupId>
+
+				<artifactId>camel-mail</artifactId>
+
+				<version>${camel.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.camel</groupId>
+
+				<artifactId>camel-ftp</artifactId>
+
+				<version>${camel.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.camel</groupId>
+
+				<artifactId>camel-mina2</artifactId>
+
+				<version>${camel.mina.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.mina</groupId>
+
+				<artifactId>mina-core</artifactId>
+
+				<version>${camel.mina.core.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.camel</groupId>
+
+				<artifactId>camel-xmpp</artifactId>
+
+				<version>${camel.version}</version>
+
+			</dependency>
+
+			<!-- OSGi -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.felix</groupId>
+
+				<artifactId>org.apache.felix.framework</artifactId>
+
+				<version>${felix.framework.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.felix</groupId>
+
+				<artifactId>org.apache.felix.configadmin</artifactId>
+
+				<version>${felix.configadmin.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>javax.xml.bind</groupId>
+
+				<artifactId>jaxb-api</artifactId>
+
+				<version>2.2.7</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>xml-apis</groupId>
+
+				<artifactId>xml-apis</artifactId>
+
+				<version>1.4.01</version>
+
+			</dependency>
+
+			<!-- apache POI -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.poi</groupId>
+
+				<artifactId>poi</artifactId>
+
+				<version>${poi.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.poi</groupId>
+
+				<artifactId>poi-ooxml</artifactId>
+
+				<version>${poi.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.poi</groupId>
+
+				<artifactId>poi-scratchpad</artifactId>
+
+				<version>${poi.version}</version>
+
+			</dependency>
+
+			<!-- http requetes -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.httpcomponents</groupId>
+
+				<artifactId>httpclient</artifactId>
+
+				<version>${httpclient.version}</version>
+
+			</dependency>
+
+			<!-- Orika (Java bean mapping) -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>ma.glasnost.orika</groupId>
+
+				<artifactId>orika-core</artifactId>
+
+				<version>1.4.1</version>
+
+			</dependency>
+
+			<!-- Webdav -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.github.lookfirst</groupId>
+
+				<artifactId>sardine</artifactId>
+
+				<version>5.0.1</version>
+
+			</dependency>
+
+			<!-- JCR/JackRabbit -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>javax.jcr</groupId>
+
+				<artifactId>jcr</artifactId>
+
+				<version>2.0</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.jackrabbit</groupId>
+
+				<artifactId>jackrabbit-core</artifactId>
+
+				<version>2.9.0</version>
+
+			</dependency>
+
+			<!-- Findbugs -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>com.google.code.findbugs</groupId>
+
+				<artifactId>annotations</artifactId>
+
+				<version>2.0.1</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.google.code.findbugs</groupId>
+
+				<artifactId>jsr305</artifactId>
+
+				<version>2.0.1</version>
+
+			</dependency>
+
+			<!-- Sesame -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.openrdf.sesame</groupId>
+
+				<artifactId>sesame-runtime</artifactId>
+
+				<version>${sesame.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.openrdf.sesame</groupId>
+
+				<artifactId>sesame-sail-nativerdf</artifactId>
+
+				<version>${sesame.version}</version>
+
+			</dependency>
+
+			<!-- Logs -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.slf4j</groupId>
+
+				<artifactId>slf4j-api</artifactId>
+
+				<version>${slf4j.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.syslog4j</groupId>
+
+				<artifactId>syslog4j</artifactId>
+
+				<version>${syslog4j.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.slf4j</groupId>
+
+				<artifactId>jcl-over-slf4j</artifactId>
+
+				<version>${slf4j.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.slf4j</groupId>
+
+				<artifactId>jul-to-slf4j</artifactId>
+
+				<version>${slf4j.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.slf4j</groupId>
+
+				<artifactId>slf4j-nop</artifactId>
+
+				<version>${slf4j.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.slf4j</groupId>
+
+				<artifactId>slf4j-simple</artifactId>
+
+				<version>${slf4j.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>ch.qos.logback</groupId>
+
+				<artifactId>logback-classic</artifactId>
+
+				<version>1.0.13</version>
+
+			</dependency>
+
+			<!-- SAXON-HE -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>net.sf.saxon</groupId>
+
+				<artifactId>Saxon-HE</artifactId>
+
+				<!--<version>9.5.1-2</version> -->
+
+
+				<version>9.4.0.7</version>
+
+			</dependency>
+
+			<!-- Web Services SOAP via CXF -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.cxf</groupId>
+
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+
+				<version>${cxf.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.cxf</groupId>
+
+				<artifactId>cxf-rt-transports-http</artifactId>
+
+				<version>${cxf.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.cxf</groupId>
+
+				<artifactId>cxf-rt-transports-http-jetty</artifactId>
+
+				<version>${cxf.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.cxf</groupId>
+
+				<artifactId>cxf-api</artifactId>
+
+				<version>${cxf.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.cxf</groupId>
+
+				<artifactId>cxf-rt-core</artifactId>
+
+				<version>${cxf.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.cxf</groupId>
+
+				<artifactId>cxf-rt-ws-security</artifactId>
+
+				<version>3.0.0-milestone2</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>wsdl4j</groupId>
+
+				<artifactId>wsdl4j</artifactId>
+
+				<version>${wsdl4j.version}</version>
+
+			</dependency>
+
+			<!-- XMPP -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.igniterealtime.smack</groupId>
+
+				<artifactId>smack</artifactId>
+
+				<version>3.2.1</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.igniterealtime.smack</groupId>
+
+				<artifactId>smackx</artifactId>
+
+				<version>3.2.1</version>
+
+			</dependency>
+
+			<!-- Tests -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.jacoco</groupId>
+
+				<artifactId>jacoco-maven-plugin</artifactId>
+
+				<version>${jacoco.version}</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.testng</groupId>
+
+				<artifactId>testng</artifactId>
+
+				<version>6.8.7</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>junit</groupId>
+
+				<artifactId>junit</artifactId>
+
+				<version>4.11</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.mockito</groupId>
+
+				<artifactId>mockito-all</artifactId>
+
+				<version>1.9.5</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.powermock</groupId>
+
+				<artifactId>powermock-api-mockito</artifactId>
+
+				<version>1.5.6</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.dbunit</groupId>
+
+				<artifactId>dbunit</artifactId>
+
+				<version>${dbunit.version}</version>
+
+				<scope>test</scope>
+
+
+				-
+				<exclusions>
+
+
+					-
+					<exclusion>
+
+						<groupId>org.slf4j</groupId>
+
+						<artifactId>slf4j-nop</artifactId>
+
+					</exclusion>
+
+
+					-
+					<exclusion>
+
+						<groupId>org.slf4j</groupId>
+
+						<artifactId>slf4j-api</artifactId>
+
+					</exclusion>
+
+
+					-
+					<exclusion>
+
+						<groupId>xerces</groupId>
+
+						<artifactId>xercesImpl</artifactId>
+
+					</exclusion>
+
+				</exclusions>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.powermock</groupId>
+
+				<artifactId>powermock-module-testng</artifactId>
+
+				<version>1.5.6</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.powermock</groupId>
+
+				<artifactId>powermock-core</artifactId>
+
+				<version>1.5.6</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>xmlunit</groupId>
+
+				<artifactId>xmlunit</artifactId>
+
+				<version>1.4</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.ninja-squad</groupId>
+
+				<artifactId>DbSetup</artifactId>
+
+				<version>1.2.0</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>gov.nasa</groupId>
+
+				<artifactId>worldwind</artifactId>
+
+				<version>${worldwind.version}</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.camel</groupId>
+
+				<artifactId>camel-testng</artifactId>
+
+				<version>${camel.version}</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>jdom</groupId>
+
+				<artifactId>jdom</artifactId>
+
+				<version>1.0</version>
+
+			</dependency>
+
+			<!-- JAX-RS -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>javax.ws.rs</groupId>
+
+				<artifactId>jsr311-api</artifactId>
+
+				<version>1.1.1</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>javax.ws.rs</groupId>
+
+				<artifactId>javax.ws.rs-api</artifactId>
+
+				<version>2.0.1</version>
+
+			</dependency>
+
+			<!-- REST Easy -->
+
+
+
+			-
+			<dependency>
+
+				<groupId>org.jboss.resteasy</groupId>
+
+				<artifactId>resteasy-bom</artifactId>
+
+				<version>${resteasy.version}</version>
+
+				<type>pom</type>
+
+				<scope>import</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.codehaus.jackson</groupId>
+
+				<artifactId>jackson-xc</artifactId>
+
+				<version>${jackson.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.codehaus.jackson</groupId>
+
+				<artifactId>jackson-core-lgpl</artifactId>
+
+				<version>${jackson.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.codehaus.jackson</groupId>
+
+				<artifactId>jackson-mapper-lgpl</artifactId>
+
+				<version>${jackson.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>log4j</groupId>
+
+				<artifactId>log4j</artifactId>
+
+				<version>1.2.16</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.slf4j</groupId>
+
+				<artifactId>slf4j-log4j12</artifactId>
+
+				<version>${slf4j.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.activemq</groupId>
+
+				<artifactId>activemq-camel</artifactId>
+
+				<version>5.7.0</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.activemq</groupId>
+
+				<artifactId>activemq-core</artifactId>
+
+				<version>5.7.0</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>commons-logging</groupId>
+
+				<artifactId>commons-logging</artifactId>
+
+				<version>1.1.2</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.cxf</groupId>
+
+				<artifactId>cxf-bundle-compatible</artifactId>
+
+				<version>2.6.6</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.bval</groupId>
+
+				<artifactId>org.apache.bval.bundle</artifactId>
+
+				<version>0.5</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>javax.validation</groupId>
+
+				<artifactId>validation-api</artifactId>
+
+				<version>1.0.0.GA</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>ognl</groupId>
+
+				<artifactId>ognl</artifactId>
+
+				<version>2.6.9</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.ops4j.pax.logging</groupId>
+
+				<artifactId>pax-logging-service</artifactId>
+
+				<version>1.6.10</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.ops4j.pax.logging</groupId>
+
+				<artifactId>pax-logging-api</artifactId>
+
+				<version>1.6.10</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.sun.jersey</groupId>
+
+				<artifactId>jersey-json</artifactId>
+
+				<version>${jersey.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.sun.jersey</groupId>
+
+				<artifactId>jersey-core</artifactId>
+
+				<version>${jersey.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.sun.jersey.contribs</groupId>
+
+				<artifactId>jersey-multipart</artifactId>
+
+				<version>${jersey.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.sun.jersey</groupId>
+
+				<artifactId>jersey-servlet</artifactId>
+
+				<version>${jersey.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.sun.jersey</groupId>
+
+				<artifactId>jersey-server</artifactId>
+
+				<version>${jersey.version}</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>javax.annotation</groupId>
+
+				<artifactId>jsr250-api</artifactId>
+
+				<version>1.0</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.geronimo.specs</groupId>
+
+				<artifactId>geronimo-servlet_2.5_spec</artifactId>
+
+				<version>1.1.2</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.servicemix.bundles</groupId>
+
+				<artifactId>org.apache.servicemix.bundles.quartz</artifactId>
+
+				<version>1.8.6_1</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.ops4j.pax.web</groupId>
+
+				<artifactId>pax-web-runtime</artifactId>
+
+				<version>1.1.11</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.glassfish.jersey.ext</groupId>
+
+				<artifactId>jersey-proxy-client</artifactId>
+
+				<version>2.0</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.glassfish.jersey.core</groupId>
+
+				<artifactId>jersey-client</artifactId>
+
+				<version>2.0</version>
+
+			</dependency>
+
+
+			-
+			<dependency>S
+
+				<groupId>javax.jms</groupId>
+
+				<artifactId>jms</artifactId>
+
+				<version>1.1</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.fasterxml.jackson.core</groupId>
+
+				<artifactId>jackson-databind</artifactId>
+
+				<version>2.1.4</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.fasterxml.jackson.datatype</groupId>
+
+				<artifactId>jackson-datatype-joda</artifactId>
+
+				<version>2.4.4</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.freemarker</groupId>
+
+				<artifactId>freemarker</artifactId>
+
+				<version>2.3.19</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.servicemix.bundles</groupId>
+
+				<artifactId>org.apache.servicemix.bundles.smack</artifactId>
+
+				<version>3.2.1_1</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>javax.mail</groupId>
+
+				<artifactId>mail</artifactId>
+
+				<version>1.4.5</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>commons-codec</groupId>
+
+				<artifactId>commons-codec</artifactId>
+
+				<version>1.7</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.googlecode.ehcache-spring-annotations</groupId>
+
+				<artifactId>ehcache-spring-annotations</artifactId>
+
+				<version>1.2.0</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>net.sf.ehcache</groupId>
+
+				<artifactId>ehcache-core</artifactId>
+
+				<version>2.6.6</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.springsource</groupId>
+
+				<artifactId>org.python</artifactId>
+
+				<version>2.2.1</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.json</groupId>
+
+				<artifactId>json</artifactId>
+
+				<version>20090211</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.karaf.management</groupId>
+
+				<artifactId>org.apache.karaf.management.server</artifactId>
+
+				<version>2.3.3</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.icegreen</groupId>
+
+				<artifactId>greenmail</artifactId>
+
+				<version>1.3.1b</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.mockftpserver</groupId>
+
+				<artifactId>MockFtpServer</artifactId>
+
+				<version>2.4</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.jcraft</groupId>
+
+				<artifactId>jsch</artifactId>
+
+				<version>0.1.48</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.apache.sshd</groupId>
+
+				<artifactId>sshd-core</artifactId>
+
+				<version>0.8.0</version>
+
+				<scope>test</scope>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>com.adahas.tools</groupId>
+
+				<artifactId>jmxeval</artifactId>
+
+				<version>1.2.6</version>
+
+				<type>zip</type>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>net.sf</groupId>
+
+				<artifactId>xmill</artifactId>
+
+				<version>0.8</version>
+
+				<type>zip</type>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>org.opensextant</groupId>
+
+				<artifactId>geodesy</artifactId>
+
+				<version>2.0.1</version>
+
+			</dependency>
+
+
+			-
+			<dependency>
+
+				<groupId>xerces</groupId>
+
+				<artifactId>xercesImpl</artifactId>
+
+				<version>2.8.0</version>
+
+			</dependency>
+
+		</dependencies>
+
+	</dependencyManagement>
+
+	<!-- Dependances communes a tous les projets -->
+
+
+
+	-
+	<dependencies>
+
+		<!-- Findbugs -->
+
+
+
+		-
+		<dependency>
+
+			<groupId>com.google.code.findbugs</groupId>
+
+			<artifactId>annotations</artifactId>
+
+		</dependency>
+
+
+		-
+		<dependency>
+
+			<groupId>com.google.code.findbugs</groupId>
+
+			<artifactId>jsr305</artifactId>
+
+		</dependency>
+
+		<!-- Tests -->
+
+
+
+		-
+		<dependency>
+
+			<groupId>org.testng</groupId>
+
+			<artifactId>testng</artifactId>
+
+		</dependency>
+
+
+		-
+		<dependency>
+
+			<groupId>org.mockito</groupId>
+
+			<artifactId>mockito-all</artifactId>
+
+		</dependency>
+
+	</dependencies>
+
+
+	-
+	<build>
+
+
+		-
+		<resources>
+
+
+			-
+			<resource>
+
+				<directory>${basedir}/src/main/java</directory>
+
+
+				-
+				<includes>
+
+					<include>**/*Mapper.xml</include>
+
+				</includes>
+
+			</resource>
+
+
+			-
+			<resource>
+
+				<directory>${basedir}/src/main/resources</directory>
+
+
+				-
+				<excludes>
+
+					<exclude>**/*-JKS.properties</exclude>
+
+				</excludes>
+
+			</resource>
+
+		</resources>
+
+
+		-
+		<pluginManagement>
+
+
+			-
+			<plugins>
+
+
+				-
+				<plugin>
+
+					<artifactId>maven-jar-plugin</artifactId>
+
+					<version>2.4</version>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<artifactId>maven-war-plugin</artifactId>
+
+					<version>2.3</version>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<artifactId>maven-assembly-plugin</artifactId>
+
+					<version>2.4</version>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<groupId>org.codehaus.mojo</groupId>
+
+					<artifactId>build-helper-maven-plugin</artifactId>
+
+					<version>1.5</version>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<artifactId>maven-compiler-plugin</artifactId>
+
+					<version>3.0</version>
+
+
+					-
+					<configuration>
+
+						<source>1.7</source>
+
+						<target>1.7</target>
+
+					</configuration>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<artifactId>maven-resources-plugin</artifactId>
+
+					<version>2.7</version>
+
+
+					-
+					<configuration>
+
+						<encoding>UTF-8</encoding>
+
+					</configuration>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<artifactId>maven-surefire-plugin</artifactId>
+
+					<version>2.16</version>
+
+
+					-
+					<configuration>
+
+						<skipTests>false</skipTests>
+
+					</configuration>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<artifactId>maven-deploy-plugin</artifactId>
+
+					<version>2.6</version>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<artifactId>maven-dependency-plugin</artifactId>
+
+					<version>2.8</version>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<groupId>org.codehaus.mojo</groupId>
+
+					<artifactId>findbugs-maven-plugin</artifactId>
+
+					<version>2.5.2</version>
+
+
+					-
+					<configuration>
+
+						<findbugsXmlOutput>true</findbugsXmlOutput>
+
+						<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+
+						<xmlOutput>true</xmlOutput>
+
+					</configuration>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<artifactId>maven-pmd-plugin</artifactId>
+
+					<version>3.0.1</version>
+
+
+					-
+					<configuration>
+
+						<linkXRef>true</linkXRef>
+
+
+						-
+						<excludes>
+
+							<exclude>org/**</exclude>
+
+							<exclude>**/generated/**</exclude>
+
+						</excludes>
+
+					</configuration>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<artifactId>maven-release-plugin</artifactId>
+
+					<version>2.0</version>
+
+
+					-
+					<configuration>
+
+						<tagBase>https://svn/projet/BOB-Framework/BOBc2/tags</tagBase>
+
+					</configuration>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<groupId>org.apache.cxf</groupId>
+
+					<artifactId>cxf-codegen-plugin</artifactId>
+
+					<version>2.7.3</version>
+
+
+					-
+					<dependencies>
+
+
+						-
+						<dependency>
+
+							<groupId>xerces</groupId>
+
+							<artifactId>xercesImpl</artifactId>
+
+							<version>2.8.1</version>
+
+						</dependency>
+
+
+						-
+						<dependency>
+
+							<groupId>javax.xml.bind</groupId>
+
+							<artifactId>jaxb-api</artifactId>
+
+							<version>2.1</version>
+
+						</dependency>
+
+
+						-
+						<dependency>
+
+							<groupId>com.sun.xml.bind</groupId>
+
+							<artifactId>jaxb-impl</artifactId>
+
+							<version>2.2.6</version>
+
+						</dependency>
+
+					</dependencies>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<groupId>org.codehaus.mojo</groupId>
+
+					<artifactId>jaxb2-maven-plugin</artifactId>
+
+					<version>${jaxb2.version}</version>
+
+
+					-
+					<executions>
+
+
+						-
+						<execution>
+
+							<id>xjc</id>
+
+
+							-
+							<goals>
+
+								<goal>xjc</goal>
+
+							</goals>
+
+						</execution>
+
+					</executions>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<groupId>org.apache.felix</groupId>
+
+					<artifactId>maven-bundle-plugin</artifactId>
+
+					<version>2.3.7-BOB</version>
+
+					<extensions>true</extensions>
+
+
+					-
+					<configuration>
+
+
+						-
+						<instructions>
+
+							<_include>bnd.bnd</_include>
+
+						</instructions>
+
+					</configuration>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<groupId>org.apache.tomcat.maven</groupId>
+
+					<artifactId>tomcat7-maven-plugin</artifactId>
+
+				</plugin>
+
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+
+
+
+				-
+				<plugin>
+
+					<groupId>org.eclipse.m2e</groupId>
+
+					<artifactId>lifecycle-mapping</artifactId>
+
+					<version>1.0.0</version>
+
+
+					-
+					<configuration>
+
+
+						-
+						<lifecycleMappingMetadata>
+
+
+							-
+							<pluginExecutions>
+
+
+								-
+								<pluginExecution>
+
+
+									-
+									<pluginExecutionFilter>
+
+										<groupId>org.apache.maven.plugins</groupId>
+
+										<artifactId>maven-dependency-plugin</artifactId>
+
+										<versionRange>[2.8,)</versionRange>
+
+
+										-
+										<goals>
+
+											<goal>copy-dependencies</goal>
+
+										</goals>
+
+									</pluginExecutionFilter>
+
+
+									-
+									<action>
+
+										<ignore />
+
+									</action>
+
+								</pluginExecution>
+
+							</pluginExecutions>
+
+						</lifecycleMappingMetadata>
+
+					</configuration>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<artifactId>maven-javadoc-plugin</artifactId>
+
+					<version>2.10.3</version>
+
+
+					-
+					<configuration>
+
+						<stylesheetfile>stylesheet.css</stylesheetfile>
+
+					</configuration>
+
+
+					-
+					<dependencies>
+
+
+						-
+						<dependency>
+
+							<groupId>com.soprasteria</groupId>
+
+							<artifactId>javadocs-stylesheet</artifactId>
+
+							<version>1.0.0</version>
+
+							<type>zip</type>
+
+						</dependency>
+
+					</dependencies>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<groupId>org.codehaus.mojo</groupId>
+
+					<artifactId>sonar-maven-plugin</artifactId>
+
+					<version>2.6</version>
+
+				</plugin>
+
+
+				-
+				<plugin>
+
+					<groupId>nl.geodienstencentrum.maven</groupId>
+
+					<artifactId>sass-maven-plugin</artifactId>
+
+					<version>2.1-RC2</version>
+
+				</plugin>
+
+			</plugins>
+
+		</pluginManagement>
+
+	</build>
+
+
+	-
+	<profiles>
+
+		<!-- Profile actif par defaut contenant la configuration des Tests Unitaires -->
+
+
+		<!-- Pour ne pas executer les tests, desactiver le profile. Ex : mvn clean 
+			install -P '!tests' -->
+
+
+
+		-
+		<profile>
+
+			<id>tests</id>
+
+
+			-
+			<activation>
+
+				<activeByDefault>true</activeByDefault>
+
+			</activation>
+
+
+			-
+			<build>
+
+
+				-
+				<plugins>
+
+
+					-
+					<plugin>
+
+						<artifactId>maven-surefire-plugin</artifactId>
+
+
+						-
+						<dependencies>
+
+
+							-
+							<dependency>
+
+								<groupId>org.apache.maven.surefire</groupId>
+
+								<artifactId>surefire-testng</artifactId>
+
+								<version>2.16</version>
+
+
+								-
+								<exclusions>
+
+
+									-
+									<exclusion>
+
+										<groupId>org.testng</groupId>
+
+										<artifactId>testng</artifactId>
+
+									</exclusion>
+
+								</exclusions>
+
+							</dependency>
+
+						</dependencies>
+
+
+						-
+						<configuration>
+
+							<skipTests>false</skipTests>
+
+
+							-
+							<includes>
+
+								<include>**/*TU.java</include>
+
+								<include>**/*SIT.java</include>
+
+								<include>**/*Test.java</include>
+
+							</includes>
+
+							<argLine>-XX:-UseSplitVerifier</argLine>
+
+						</configuration>
+
+					</plugin>
+
+
+					-
+					<plugin>
+
+						<artifactId>maven-javadoc-plugin</artifactId>
+
+					</plugin>
+
+				</plugins>
+
+			</build>
+
+		</profile>
+
+
+		-
+		<profile>
+
+			<id>analysis</id>
+
+
+			-
+			<build>
+
+
+				-
+				<plugins>
+
+
+					-
+					<plugin>
+
+						<groupId>org.codehaus.mojo</groupId>
+
+						<artifactId>findbugs-maven-plugin</artifactId>
+
+					</plugin>
+
+
+					-
+					<plugin>
+
+						<artifactId>maven-pmd-plugin</artifactId>
+
+					</plugin>
+
+				</plugins>
+
+			</build>
+
+		</profile>
+
+		<!-- Profile pour la couverture du code -->
+
+
+
+		-
+		<profile>
+
+			<id>coverage</id>
+
+
+			-
+			<build>
+
+
+				-
+				<plugins>
+
+
+					-
+					<plugin>
+
+						<groupId>org.apache.maven.plugins</groupId>
+
+						<artifactId>maven-surefire-plugin</artifactId>
+
+
+						-
+						<configuration>
+
+							<argLine>-XX:-UseSplitVerifier ${jacoco.agent.ut.arg}</argLine>
+
+							<!-- Specific to generate mapping between tests and covered code -->
+
+
+
+							-
+							<properties>
+
+
+								-
+								<property>
+
+									<name>listener</name>
+
+									<value>org.sonar.java.jacoco.TestNGListener</value>
+
+								</property>
+
+							</properties>
+
+						</configuration>
+
+					</plugin>
+
+
+					-
+					<plugin>
+
+						<groupId>org.apache.maven.plugins</groupId>
+
+						<artifactId>maven-failsafe-plugin</artifactId>
+
+						<version>2.16</version>
+
+
+						-
+						<configuration>
+
+							<argLine>-Xmx1024m -XX:MaxPermSize=1024m -XX:-UseSplitVerifier
+								${jacoco.agent.it.arg}</argLine>
+
+							<!-- Specific to generate mapping between tests and covered code -->
+
+
+
+							-
+							<properties>
+
+
+								-
+								<property>
+
+									<name>listener</name>
+
+									<value>org.sonar.java.jacoco.TestNGListener</value>
+
+								</property>
+
+							</properties>
+
+							<!-- Let's put failsafe reports with surefire to have access to tests 
+								failures/success reports in sonar -->
+
+
+							<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+
+						</configuration>
+
+					</plugin>
+
+
+					-
+					<plugin>
+
+						<groupId>org.jacoco</groupId>
+
+						<artifactId>jacoco-maven-plugin</artifactId>
+
+						<version>${jacoco.version}</version>
+
+
+						-
+						<executions>
+
+							<!-- Prepares a variable, jacoco.agent.ut.arg, that contains the info 
+								to be passed to the JVM hosting the code being tested. -->
+
+
+
+							-
+							<execution>
+
+								<id>prepare-ut-agent</id>
+
+								<phase>process-test-classes</phase>
+
+
+								-
+								<goals>
+
+									<goal>prepare-agent</goal>
+
+								</goals>
+
+
+								-
+								<configuration>
+
+									<destFile>${sonar.jacoco.reportPath}</destFile>
+
+									<propertyName>jacoco.agent.ut.arg</propertyName>
+
+									<append>true</append>
+
+								</configuration>
+
+							</execution>
+
+							<!-- Prepares a variable, jacoco.agent.it.arg, that contains the info 
+								to be passed to the JVM hosting the code being tested. -->
+
+
+
+							-
+							<execution>
+
+								<id>prepare-it-agent</id>
+
+								<phase>pre-integration-test</phase>
+
+
+								-
+								<goals>
+
+									<goal>prepare-agent</goal>
+
+								</goals>
+
+
+								-
+								<configuration>
+
+									<destFile>${sonar.jacoco.itReportPath}</destFile>
+
+									<propertyName>jacoco.agent.it.arg</propertyName>
+
+									<append>true</append>
+
+								</configuration>
+
+							</execution>
+
+						</executions>
+
+					</plugin>
+
+				</plugins>
+
+			</build>
+
+
+			-
+			<dependencies>
+
+
+				-
+				<dependency>
+
+					<groupId>org.codehaus.sonar-plugins.java</groupId>
+
+					<artifactId>sonar-jacoco-listeners</artifactId>
+
+					<version>${sonar-jacoco-listeners.version}</version>
+
+					<scope>test</scope>
+
+				</dependency>
+
+			</dependencies>
+
+		</profile>
+
+	</profiles>
+
+
+	-
+	<scm>
+
+		<connection>scm:svn:https://svn/projet/BOB-Framework/BOBc2/trunk/Modules/</connection>
+
+	</scm>
+
+
+	-
+	<distributionManagement>
+
+
+		-
+		<repository>
+
+			<id>BOB-release</id>
+
+			<name>Releases BOB</name>
+
+			<url>http://192.168.00.00:10004/content/repositories/releases</url>
+
+		</repository>
+
+
+		-
+		<snapshotRepository>
+
+			<id>BOB-snapshot</id>
+
+			<name>Snapshots BOB</name>
+
+			<url>http://192.168.00.90:10004/content/repositories/snapshots</url>
+
+		</snapshotRepository>
+
+	</distributionManagement>
+
+</project>

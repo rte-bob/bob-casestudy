@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.10.RELEASE</version>
+		<relativePath />
+
+		<!-- lookup parent from repository -->
+
+
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.rte.bob</groupId>
+	<artifactId>bob-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>BOB parent java project</name>
+
+
+	<organization>
+		<name>RTE-FRANCE</name>
+		<url>http://www.rte-france.com/</url>
+	</organization>
+	<!-- <licenses> <license> <name>Apache License, Version 2.0</name> <url>http://www.apache.org/licenses/LICENSE-2.0</url> 
+		</license> </licenses> -->
+	<developers>
+		<developer>
+			<id>DPCM</id>
+			<name>Direction Systèmes d'Information et Télécom - DPCM - PARC</name>
+			<!-- <email>DevTeam@rte-france.com</email> -->
+			<organization>RTE-FRANCE</organization>
+			<organizationUrl>http://www.rte-france.com/</organizationUrl>
+			<!-- <roles> <role>Project lead</role> </roles> -->
+		</developer>
+	</developers>
+	<modules>
+		<module>bob-collector</module>
+		<module>bob-processor</module>
+		<module>bob-publisher</module>
+		<module>bob-common</module>
+	</modules>
+
+	<properties>
+		<!-- allow skipping exectution of integration tests if needed by with the 
+			use of the option '-Dskip.it=true' on maven command line -->
+		<skip.it>true</skip.it>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>(1.8,)</java.version>
+		<common.version>0.0.1-SNAPSHOT</common.version>
+		<bob.version>${project.version}</bob.version>
+	</properties>
+
+	<!-- dependency management configuration -->
+	<dependencyManagement />
+
+
+	<!-- Common dependency -->
+	<dependencies>
+		<!-- Spring-boot Starters -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-batch</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-integration</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+
+		<!-- end Spring-boot Starters -->
+
+
+		<!-- DATABASE DRIVER -->
+		<dependency>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>12.2.0.1</version>
+		<scope>system</scope>
+		<systemPath>${basedir}/src/main/resources/ojdbc8.jar</systemPath> 
+		</dependency>
+
+	</dependencies>
+
+
+	<!-- central repository -->
+	<!-- <repositories> <repository> <snapshots> <enabled>false</enabled> </snapshots> 
+		<id>rte_repo_central</id> <name>RTE-FRANCE Repository</name> <url>https://repo.rte-france.com/repo</url> 
+		</repository> </repositories> -->
+
+	<!-- Maven plugins repository -->
+	<!-- <pluginRepositories> <pluginRepository> <releases> <updatePolicy>never</updatePolicy> 
+		</releases> <snapshots> <enabled>false</enabled> </snapshots> <id>central</id> 
+		<name>Central Repository</name> <url>https://repo.maven.apache.org/maven2</url> 
+		</pluginRepository> </pluginRepositories> -->
+
+
+	<build>
+		<plugins>
+
+			<!-- Enable random port for integration tests -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>reserve-tomcat-port</id>
+						<goals>
+							<goal>reserve-network-port</goal>
+						</goals>
+						<phase>process-resources</phase>
+						<configuration>
+							<portNames>
+								<portName>tomcat.http.port</portName>
+							</portNames>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<!-- <configuration> <classifier>exec</classifier> -->
+						<!-- Debug the app -->
+						<!-- <jvmArguments> -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 
+							</jvmArguments> -->
+
+					</execution>
+					<execution>
+						<id>pre-integration-test</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<skip>${skip.it}</skip>
+							<arguments>
+								<argument>--server.port=${tomcat.http.port}</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+						<configuration>
+							<skip>${skip.it}</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- use system property 'test.server.port' to retrieve the random port 
+				for integration tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<configuration>
+					<skip>${skip.it}</skip>
+					<systemPropertyVariables>
+						<test.server.port>${tomcat.http.port}</test.server.port>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+
+
+	<!-- Définitions of profiles -->
+	<profiles>
+	
+	
+	
+	
+	
+	
+	
+	<profile>
+			<id>dev</id>
+
+
+
+			<build>
+
+				<plugins>
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-pmd-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+	
+	
+	
+	
+	<profile>
+			<id>integration</id>
+
+
+
+			<build>
+
+				<plugins>
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-pmd-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+	
+	
+	
+	
+	<profile>
+			<id>production</id>
+
+
+
+			<build>
+
+				<plugins>
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-pmd-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+	
+		<!-- Profile actif par defaut contenant la configuration des Tests Unitaires -->
+
+
+		<!-- Pour ne pas executer les tests, desactiver le profile. Ex : mvn clean 
+			install -P '!tests' -->
+
+
+
+
+		<profile>
+			<id>tests</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.maven.surefire</groupId>
+								<artifactId>surefire-testng</artifactId>
+								<version>2.16</version>
+								<exclusions>
+									<exclusion>
+										<groupId>org.testng</groupId>
+										<artifactId>testng</artifactId>
+									</exclusion>
+								</exclusions>
+							</dependency>
+						</dependencies>
+
+						<configuration>
+							<skipTests>false</skipTests>
+
+							<includes>
+								<include>**/*TU.java</include>
+								<include>**/*SIT.java</include>
+								<include>**/*Test.java</include>
+							</includes>
+							<argLine>-XX:-UseSplitVerifier</argLine>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-javadoc-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+
+
+
+		<profile>
+			<id>analysis</id>
+
+
+
+			<build>
+
+				<plugins>
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-pmd-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+
+		<!-- Profile pour la couverture du code -->
+
+
+
+
+		<profile>
+			<id>coverage</id>
+
+
+
+			<build>
+
+				<plugins>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+
+						<configuration>
+							<argLine>-XX:-UseSplitVerifier ${jacoco.agent.ut.arg}</argLine>				<!-- Specific to generate mapping between tests and covered code -->
+
+
+							<properties>
+
+								<property>
+									<name>listener</name>
+									<value>org.sonar.java.jacoco.TestNGListener</value>
+								</property>
+							</properties>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>2.16</version>
+
+						<configuration>
+							<argLine>-Xmx1024m -XX:MaxPermSize=1024m -XX:-UseSplitVerifier
+								${jacoco.agent.it.arg}</argLine>				<!-- Specific to generate mapping between tests and covered code -->
+
+
+							<properties>
+
+								<property>
+									<name>listener</name>
+									<value>org.sonar.java.jacoco.TestNGListener</value>
+								</property>
+							</properties>				<!-- Let's put failsafe reports with surefire to have access to tests failures/success 
+								reports in sonar -->
+							<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${jacoco.version}</version>
+
+						<executions>				<!-- Prepares a variable, jacoco.agent.ut.arg, that contains the info to 
+								be passed to the JVM hosting the code being tested. -->
+
+
+							<execution>
+								<id>prepare-ut-agent</id>
+								<phase>process-test-classes</phase>
+
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+
+								<configuration>
+									<destFile>${sonar.jacoco.reportPath}</destFile>
+									<propertyName>jacoco.agent.ut.arg</propertyName>
+									<append>true</append>
+								</configuration>
+							</execution>				<!-- Prepares a variable, jacoco.agent.it.arg, that contains the info to 
+								be passed to the JVM hosting the code being tested. -->
+
+
+							<execution>
+								<id>prepare-it-agent</id>
+								<phase>pre-integration-test</phase>
+
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+
+								<configuration>
+									<destFile>${sonar.jacoco.itReportPath}</destFile>
+									<propertyName>jacoco.agent.it.arg</propertyName>
+									<append>true</append>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+
+
+
+			<dependencies>
+
+				<dependency>
+					<groupId>org.codehaus.sonar-plugins.java</groupId>
+					<artifactId>sonar-jacoco-listeners</artifactId>
+					<version>${sonar-jacoco-listeners.version}</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+
+		</profile>
+
+	</profiles>
+
+
+	<scm>
+
+		<connection>scm:git:https://github.com/rte-bob/dataImport.git/</connection>
+
+	</scm>
+
+
+
+	<distributionManagement>
+
+
+
+		<repository>
+
+			<id>BOB-release</id>
+
+			<name>Releases BOB</name>
+
+			<url>http://0.0.00.00:000/content/repositories/releases</url>
+
+		</repository>
+
+
+
+		<snapshotRepository>
+
+			<id>BOB-snapshot</id>
+
+			<name>Snapshots BOB</name>
+
+			<url>http://0.0.00.00:000/content/repositories/snapshots</url>
+
+		</snapshotRepository>
+
+	</distributionManagement>
+
+
+</project>
